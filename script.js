@@ -5,11 +5,10 @@ lowerChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n
 numChar = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 specialChar = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
 finalPassword = [];
-// Write password to the #password input
-function writePassword() {
-  // var password = generatePassword();
-  // var passwordText = document.querySelector("#password");
+var fixedPassword = [];
+var FinalString;
 
+function PasswordGenerator() {
   alert('The following criteria will establish your own password. For following criteria please type y for yes and n for no')
   var lowerLetterChoice = window.prompt('Would you like to include lowercase letters in your password?');
   var upperLetterChoice = window.prompt('Would you like to include upper letters in your password');
@@ -70,14 +69,24 @@ function writePassword() {
 
   if(upperLetterChoice === 'n' && lowerLetterChoice === 'n' && specialChoice === 'n' && numberChoice === 'n'){
     alert('You must choose at least one criteria');
-    writePassword();
+    PasswordGenerator();
   }
 
   for(var i = 0; i < passwordLength; i++){
-    var randomPassword = finalPassword[Math.floor(Math.random() * charForPassword.length)];
-    
+    var randomPassword = finalPassword[Math.floor(Math.random() * finalPassword.length)];
+    fixedPassword.push(randomPassword);
+    console.log(fixedPassword);
   }
-  // passwordText.value = password;
+  FinalString = fixedPassword.join("");
+  console.log(FinalString);
+  return FinalString;
+}
+// Write password to the #password input
+function writePassword() {
+  var password = PasswordGenerator();
+  var passwordText = document.querySelector("#password");
+  
+  passwordText.value = password;
 
 }
 
