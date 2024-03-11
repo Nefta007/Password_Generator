@@ -61,23 +61,26 @@ function PasswordGenerator() {
     alert('You have chosen to not add numbers');
   }
 
+  // if password length is not between 8 and 128 characters long then keep asking for user input until correct length is put in.
   while(passwordLength < 8 || passwordLength > 128){
     alert("Please make sure that your password is at  least 8 characters long and at most is 128 characters long");
     var passwordLength = prompt("How long would you like the password to be (has to be longer than 8 character and shorter than 128 characters)");
   }
   alert('You password will be ' + passwordLength + " long");
 
+  // this will make sure that at least one criteria is met
   if(upperLetterChoice === 'n' && lowerLetterChoice === 'n' && specialChoice === 'n' && numberChoice === 'n'){
     alert('You must choose at least one criteria');
     PasswordGenerator();
   }
 
+  // will iterate through array in order to create a new password
   for(var i = 0; i < passwordLength; i++){
-    var randomPassword = finalPassword[Math.floor(Math.random() * finalPassword.length)];
-    fixedPassword.push(randomPassword);
+    var randomPassword = finalPassword[Math.floor(Math.random() * finalPassword.length)]; //this will randomely select characters from array
+    fixedPassword.push(randomPassword); //will push characters into new variable
     console.log(fixedPassword);
   }
-  FinalString = fixedPassword.join("");
+  FinalString = fixedPassword.join(""); //will get rid of commas in b/w
   console.log(FinalString);
   return FinalString;
 }
