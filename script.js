@@ -10,51 +10,72 @@ function writePassword() {
   // var password = generatePassword();
   // var passwordText = document.querySelector("#password");
 
-  var numberChoice = window.prompt('Please pick length of password. (must be between 8 to 128 characters long)');
+  alert('The following criteria will establish your own password. For following criteria please type y for yes and n for no')
   var lowerLetterChoice = window.prompt('Would you like to include lowercase letters in your password?');
   var upperLetterChoice = window.prompt('Would you like to include upper letters in your password');
   var specialChoice = window.prompt('Would you like to include special characters in your password?');
   var numberChoice = window.prompt('would you like to include numbers in your password?');
+  var passwordLength = window.prompt('Please pick length of password. (must be between 8 to 128 characters long)');
 
   // if nothing is chosen end function
-  if(!lowerLetterChoice && upperLetterChoice && specialChoice && numberChoice){
+  if(!lowerLetterChoice && upperLetterChoice && specialChoice && numberChoice && !passwordLength){
     return;
   }
 
   // will varify if password has lowercase letters
-  if(lowerLetterChoice === 'Y' || lowerLetterChoice ==='y' || lowerLetterChoice === 'yes' || lowerLetterChoice === 'Yes'){
+  if(lowerLetterChoice ==='y'){
     finalPassword = finalPassword.concat(lowerChar);
+    alert('You have chosen to add lowercase letters');
     console.log(finalPassword);
   }
-  else{
-    console.log('You have chosen to add lowercase letters');
+  else if(lowerLetterChoice ==='n'){
+    alert('You have chosen to not add lowercase letters');
   }
 
   // will varify if password will have uppercase letters
-  if(upperLetterChoice === 'Y' || upperLetterChoice ==='y' || upperLetterChoice === 'yes' || upperLetterChoice === 'Yes'){
+  if(upperLetterChoice ==='y'){
     finalPassword = finalPassword.concat(upperChar);
+    alert('You have chosen to add uppercase letters');
     console.log(finalPassword);
   }
-  else{
-    console.log('You have chosen to add uppercase letters');
+  else if(upperLetterChoice ==='n'){
+    alert('You have chosen to not add lowercase letters');
   }
 
   // will varify if password has special characters
-  if(specialChoice === 'Y' || specialChoice ==='y' || specialChoice === 'yes' || specialChoice === 'Yes'){
+  if(specialChoice ==='y'){
     finalPassword = finalPassword.concat(specialChar);
+    alert('You have chosen to add special characters');
     console.log(finalPassword);
   }
-  else{
-    console.log('You have chosen to add special characters');
+  else if(specialChoice ==='n'){
+    alert('You have chosen to not add special characters');
   }
 
   // will varify if password has numbers
-  if(numberChoice === 'Y' || numberChoice ==='y' || numberChoice === 'yes' || numberChoice === 'Yes'){
+  if(numberChoice ==='y'){
     finalPassword = finalPassword.concat(numChar);
+    alert('You have chosen to add numbers');
     console.log(finalPassword);
   }
-  else{
-    console.log('You have chosen to add numbers');
+  else if(numberChoice ==='n'){
+    alert('You have chosen to not add numbers');
+  }
+
+  while(passwordLength < 8 || passwordLength > 128){
+    alert("Please make sure that your password is at  least 8 characters long and at most is 128 characters long");
+    var passwordLength = prompt("How long would you like the password to be (has to be longer than 8 character and shorter than 128 characters)");
+  }
+  alert('You password will be ' + passwordLength + " long");
+
+  if(upperLetterChoice === 'n' && lowerLetterChoice === 'n' && specialChoice === 'n' && numberChoice === 'n'){
+    alert('You must choose at least one criteria');
+    writePassword();
+  }
+
+  for(var i = 0; i < passwordLength; i++){
+    var randomPassword = finalPassword[Math.floor(Math.random() * charForPassword.length)];
+    
   }
   // passwordText.value = password;
 
